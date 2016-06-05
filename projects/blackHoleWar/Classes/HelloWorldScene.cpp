@@ -73,6 +73,15 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(pSprite, 0);
     
+	CCGLProgram * p = new CCGLProgram();
+	p->initWithVertexShaderFilename("gray.vsh", "gray.fsh");
+	p->addAttribute(kCCAttributeNamePosition, kCCVertexAttrib_Position);
+	p->addAttribute(kCCAttributeNameColor, kCCVertexAttrib_Color);
+	p->addAttribute(kCCAttributeNameTexCoord, kCCVertexAttrib_TexCoords);
+	p->link();
+	p->updateUniforms();
+	pSprite->setShaderProgram(p);
+
     return true;
 }
 
