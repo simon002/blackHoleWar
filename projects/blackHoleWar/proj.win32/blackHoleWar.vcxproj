@@ -131,12 +131,15 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDK.cpp" />
     <ClCompile Include="..\Classes\3rdplatform\platformhelper.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDK.h" />
+    <ClInclude Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDKTypeDef.h" />
     <ClInclude Include="..\Classes\3rdplatform\platformhelper.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />

@@ -10,6 +10,9 @@
     <Filter Include="Classes\3rdplatform">
       <UniqueIdentifier>{100d790e-aa8c-48e0-8745-a79ecd1a40b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\3rdplatform\C2DXShareSDK">
+      <UniqueIdentifier>{3e1fa688-e6a4-41e1-aad9-dec857093532}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,6 +27,9 @@
     <ClCompile Include="..\Classes\3rdplatform\platformhelper.cpp">
       <Filter>Classes\3rdplatform</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDK.cpp">
+      <Filter>Classes\3rdplatform\C2DXShareSDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -37,6 +43,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\3rdplatform\platformhelper.h">
       <Filter>Classes\3rdplatform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDK.h">
+      <Filter>Classes\3rdplatform\C2DXShareSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDKTypeDef.h">
+      <Filter>Classes\3rdplatform\C2DXShareSDK</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -13,7 +13,9 @@ class  AppDelegate : private cocos2d::CCApplication
 public:
     AppDelegate();
     virtual ~AppDelegate();
-
+	void initShareSDK();
+	void shareCallBack();
+	void showShareResultToast(const char *msg);
     /**
     @brief    Implement CCDirector and CCScene init code here.
     @return true    Initialize success, app continue.
