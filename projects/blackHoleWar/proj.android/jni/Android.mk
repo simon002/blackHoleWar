@@ -11,13 +11,16 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/HelloWorldScene.cpp \
 				   ../../Classes/3rdplatform/platformhelper.cpp
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
+                    $(LOCAL_PATH)/../../../../scripting/lua/cocos2dx_support \
+					$(LOCAL_PATH)/../../../../scripting/lua/lua
 
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
 LOCAL_WHOLE_STATIC_LIBRARIES += box2d_static
 LOCAL_WHOLE_STATIC_LIBRARIES += chipmunk_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_extension_static
+LOCAL_WHOLE_STATIC_LIBRARIES += cocos_lua_static
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -27,3 +30,4 @@ $(call import-module,CocosDenshion/android)
 $(call import-module,extensions)
 $(call import-module,external/Box2D)
 $(call import-module,external/chipmunk)
+$(call import-module,scripting/lua/proj.android)

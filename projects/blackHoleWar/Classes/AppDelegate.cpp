@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
-
+#include "script_support/CCScriptSupport.h"
+#include "CCLuaEngine.h"
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -28,8 +29,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCScene *pScene = HelloWorld::scene();
 
     // run
-    pDirector->runWithScene(pScene);
+   // pDirector->runWithScene(pScene);
+	CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
+	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 
+	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("scripts/hello.lua");
+	pEngine->executeScriptFile(path.c_str());
     return true;
 }
 

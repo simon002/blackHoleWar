@@ -1,5 +1,7 @@
 #include "HelloWorldScene.h"
 #include "3rdplatform/platformhelper.h"
+#include "script_support/CCScriptSupport.h"
+#include "CCLuaEngine.h"
 USING_NS_CC;
 
 CCScene* HelloWorld::scene()
