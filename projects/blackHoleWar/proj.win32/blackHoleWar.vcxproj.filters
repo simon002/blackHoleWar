@@ -33,6 +33,9 @@
     <ClCompile Include="..\Classes\3rdplatform\sharesdk.cpp">
       <Filter>Classes\3rdplatform</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\3rdplatform\shareimplement.cpp">
+      <Filter>Classes\3rdplatform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -57,6 +60,9 @@
       <Filter>Classes\3rdplatform</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\3rdplatform\shareinterface.h">
+      <Filter>Classes\3rdplatform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\3rdplatform\shareimplement.h">
       <Filter>Classes\3rdplatform</Filter>
     </ClInclude>
   </ItemGroup>

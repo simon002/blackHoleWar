@@ -133,6 +133,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
   <ItemGroup>
     <ClCompile Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDK.cpp" />
     <ClCompile Include="..\Classes\3rdplatform\platformhelper.cpp" />
+    <ClCompile Include="..\Classes\3rdplatform\shareimplement.cpp" />
     <ClCompile Include="..\Classes\3rdplatform\sharesdk.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
@@ -142,6 +143,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDK.h" />
     <ClInclude Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDKTypeDef.h" />
     <ClInclude Include="..\Classes\3rdplatform\platformhelper.h" />
+    <ClInclude Include="..\Classes\3rdplatform\shareimplement.h" />
     <ClInclude Include="..\Classes\3rdplatform\shareinterface.h" />
     <ClInclude Include="..\Classes\3rdplatform\sharesdk.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />

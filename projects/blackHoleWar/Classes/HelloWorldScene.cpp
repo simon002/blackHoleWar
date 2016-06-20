@@ -2,6 +2,7 @@
 #include "3rdplatform/platformhelper.h"
 #include "script_support/CCScriptSupport.h"
 #include "CCLuaEngine.h"
+#include "3rdplatform/shareimplement.h"
 USING_NS_CC;
 
 CCScene* HelloWorld::scene()
@@ -90,7 +91,8 @@ bool HelloWorld::init()
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
-	PlatFormHelper::weixin_sendToFriend();
+	//PlatFormHelper::weixin_sendToFriend();
+	ShareImplement::shareInstance()->showShareMenu();
 //#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
 //	CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
 //#else

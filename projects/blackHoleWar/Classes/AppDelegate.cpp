@@ -57,16 +57,16 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCScene *pScene = HelloWorld::scene();
 
     // run
-   // pDirector->runWithScene(pScene);
-	CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
+    pDirector->runWithScene(pScene);
+	//CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
+	//CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 
-	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("scripts/hello.lua");
-	pEngine->executeScriptFile(path.c_str());
+	//std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("scripts/hello.lua");
+	//pEngine->executeScriptFile(path.c_str());
 	ShareImplement::shareInstance()->setShareInterface(new ShareSdk);
 	ShareImplement::shareInstance()->initShareSDK();
 	ShareImplement::shareInstance()->configSharePlatform();
-	ShareImplement::shareInstance()->showShareMenu();
+	
     return true;
 }
 

@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 package com.xm.game;
-
+import cn.sharesdk.*;
 import com.tencent.*;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
@@ -55,7 +55,8 @@ public class blackHoleWar extends Cocos2dxActivity{
     protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);	
 		instance = this;
-		regToWX();
+		//regToWX();
+		ShareSDKUtils.prepare();
 	}
     private void regToWX(){
         api = WXAPIFactory.createWXAPI(this, APP_ID, true);
