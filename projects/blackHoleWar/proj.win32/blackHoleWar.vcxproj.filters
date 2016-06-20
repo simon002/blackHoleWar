@@ -30,6 +30,9 @@
     <ClCompile Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDK.cpp">
       <Filter>Classes\3rdplatform\C2DXShareSDK</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\3rdplatform\sharesdk.cpp">
+      <Filter>Classes\3rdplatform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -49,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\3rdplatform\C2DXShareSDK\C2DXShareSDKTypeDef.h">
       <Filter>Classes\3rdplatform\C2DXShareSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\3rdplatform\sharesdk.h">
+      <Filter>Classes\3rdplatform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\3rdplatform\shareinterface.h">
+      <Filter>Classes\3rdplatform</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
