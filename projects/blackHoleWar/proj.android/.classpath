@@ -7,10 +7,14 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="libs/libPluginProtocol.jar"/>
-	<classpathentry kind="lib" path="libs/ShareSDK-Core-2.7.2.jar"/>
-	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-2.7.2.jar"/>
-	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Core-2.7.2.jar"/>
-	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Favorite-2.7.2.jar"/>
-	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Moments-2.7.2.jar"/>
+	<classpathentry kind="lib" path="libs/MobTools.jar"/>
+	<classpathentry kind="lib" path="libs/libapshare.jar"/>
+	<classpathentry kind="lib" path="libs/MobLogCollector.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Alipay-2.6.3.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Core-2.6.3.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-2.6.3.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Core-2.6.3.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Favorite-2.6.3.jar"/>
+	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Moments-2.6.3.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
