@@ -23,6 +23,8 @@ THE SOFTWARE.
 ****************************************************************************/
 package com.xm.game;
 import cn.sharesdk.*;
+
+import com.mob.tools.utils.R;
 import com.tencent.*;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
@@ -33,6 +35,7 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -42,9 +45,9 @@ import android.os.Message;
 import android.widget.Toast;
 
 public class blackHoleWar extends Cocos2dxActivity{
-	private static final String APP_ID = "wx4d7504c20ece06ed";//AppID£¬´ÓµÚËÄ²½»ñÈ¡
-	private static IWXAPI api;//Î¢ÐÅAPI½Ó¿Ú
-	private static blackHoleWar instance;//Àà¾²Ì¬ÊµÀý£¬ÎªÁË·½±ãºóÃæ¾²Ì¬º¯ÊýµÄµ÷ÓÃ
+	private static final String APP_ID = "wx4d7504c20ece06ed";//AppIDï¿½ï¿½ï¿½Óµï¿½ï¿½Ä²ï¿½ï¿½ï¿½È¡
+	private static IWXAPI api;//Î¢ï¿½ï¿½APIï¿½Ó¿ï¿½
+	private static blackHoleWar instance;//ï¿½à¾²Ì¬Êµï¿½ï¿½Îªï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½æ¾²Ì¬ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½
 	private static final int SHOW_MESSAGE = 0;
 	private static final Handler msgHandler = new Handler(){  
         public void handleMessage(Message msg) {   
@@ -73,26 +76,26 @@ public static void sendMsgToFriend(){
         msg.title = "Tittle";
         msg.description = "Description";
  
-        Bitmap thumb = BitmapFactory.decodeResource(instance.getResources(), R.drawable.icon);
-        msg.thumbData = Util.bmpToByteArray(thumb, true);
+        //Bitmap thumb = BitmapFactory.decodeResource(instance.getResources(), R.drawable.icon);
+        //msg.thumbData = Util.bmpToByteArray(thumb, true);
  
-        SendMessageToWX.Req req = new SendMessageToWX.Req();
-        req.transaction = buildTransaction("webpage");
-        req.message = msg;
-        req.scene = SendMessageToWX.Req.WXSceneSession;
-        api.sendReq(req);
+        //SendMessageToWX.Req req = new SendMessageToWX.Req();
+        //req.transaction = buildTransaction("webpage");
+        //req.message = msg;
+        //req.scene = SendMessageToWX.Req.WXSceneSession;
+       // api.sendReq(req);
     }
     else
     {
     	///Looper.prepare();
-         //Toast.makeText(instance, "Î´°²×°Î¢ÐÅ", Toast.LENGTH_SHORT).show();
+         //Toast.makeText(instance, "Î´ï¿½ï¿½×°Î¢ï¿½ï¿½", Toast.LENGTH_SHORT).show();
          //Looper.loop();
          Message msg = msgHandler.obtainMessage();  
-         msg.obj = "Î´°²×°Î¢ÐÅ";  
+         msg.obj = "Î´ï¿½ï¿½×°Î¢ï¿½ï¿½";  
          msgHandler.sendMessage(msg);
     	  //Message msg=new Message();  
           //msg.what=SHOW_MESSAGE;  
-          //msg.obj="showmessage demos";  //¿ÉÒÔ´«µÝ²ÎÊý  
+          //msg.obj="showmessage demos";  //ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Ý²ï¿½ï¿½ï¿½  
           //handler.sendMessage(msg);
     }
 }
@@ -110,8 +113,8 @@ public static void sendMsgToTimeLine(){
             msg.title = "Tittle";
             msg.description = "Description";
  
-            Bitmap thumb = BitmapFactory.decodeResource(instance.getResources(), R.drawable.icon);
-            msg.thumbData = Util.bmpToByteArray(thumb, true);
+           // Bitmap thumb = BitmapFactory.decodeResource(instance.getResources(), R.drawable.icon);
+           // msg.thumbData = Util.bmpToByteArray(thumb, true);
  
             SendMessageToWX.Req req = new SendMessageToWX.Req();
             req.transaction = buildTransaction("webpage");
@@ -120,12 +123,12 @@ public static void sendMsgToTimeLine(){
             api.sendReq(req);
         }
         else{
-            Toast.makeText(instance, "Î¢ÐÅ°æ±¾¹ýµÍ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(instance, "Î¢ï¿½Å°æ±¾ï¿½ï¿½ï¿½", Toast.LENGTH_SHORT).show();
         }
     }
     else
     {
-         Toast.makeText(instance, "Î´°²×°Î¢ÐÅ", Toast.LENGTH_SHORT).show();
+         Toast.makeText(instance, "Î´ï¿½ï¿½×°Î¢ï¿½ï¿½", Toast.LENGTH_SHORT).show();
     }
 }
 private static String buildTransaction(final String type) {

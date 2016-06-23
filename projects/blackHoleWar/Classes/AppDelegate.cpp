@@ -55,7 +55,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     CCScene *pScene = HelloWorld::scene();
-x
+
     // run
     pDirector->runWithScene(pScene);
 	//CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
