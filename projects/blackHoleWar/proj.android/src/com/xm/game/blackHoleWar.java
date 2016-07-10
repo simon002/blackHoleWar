@@ -100,6 +100,12 @@ public static void sendMsgToFriend(){
     }
 }
 
+public static void shareTips(String tips){
+
+    Message msg = msgHandler.obtainMessage();  
+    msg.obj = tips;  
+    msgHandler.sendMessage(msg);
+}
 
 public static void sendMsgToTimeLine(){
  

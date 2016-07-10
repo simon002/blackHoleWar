@@ -53,7 +53,7 @@
     -->
     
     <ShareSDK 
-        AppKey = "androidv1101"/> <!-- 修改成你在sharesdk后台注册的应用的appkey"-->
+        AppKey = "13e9816460b2c"/> <!-- 修改成你在sharesdk后台注册的应用的appkey"-->
     
     <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
     <SinaWeibo
@@ -97,24 +97,24 @@
     <Wechat
         Id="4"
         SortId="4"
-        AppId="wx4868b35061f87885"
-        AppSecret="64020361b8ec4c99936c0e3999a9f249"
-        BypassApproval="false"
+        AppId="wx4d7504c20ece06ed"
+        AppSecret="29b4aa584b438f6f1be5b39c6540509a"
+        BypassApproval="true"
         Enable="true" />
     
     <WechatMoments
         Id="5"
         SortId="5"
-        AppId="wx4868b35061f87885"
-        AppSecret="64020361b8ec4c99936c0e3999a9f249"
+        AppId="wx4d7504c20ece06ed"
+        AppSecret="29b4aa584b438f6f1be5b39c6540509a"
         BypassApproval="false"
         Enable="true" />
         
 	<WechatFavorite
         Id="6"
         SortId="6"
-        AppId="wx4868b35061f87885"
-        AppSecret="64020361b8ec4c99936c0e3999a9f249"
+        AppId="wx4d7504c20ece06ed"
+        AppSecret="29b4aa584b438f6f1be5b39c6540509a"
         Enable="true" />
     
 	<!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
@@ -145,16 +145,16 @@
     <Renren
         Id="10"
         SortId="10"
-        AppId="226427"
-        ApiKey="fc5b8aed373c4c27a05b712acba0f8c3"
-        SecretKey="f29df781abdd4f49beca5a2194676ca4"
+        AppId="482867"
+        ApiKey="6d8b03acac3b41089ede73599c59875d"
+        SecretKey="10b3a75cf14349158348b41ea9a4d872"
         Enable="true" />
     
     <KaiXin
         Id="11"
         SortId="11"
-        AppKey="358443394194887cee81ff5890870c7c"
-        AppSecret="da32179d859c016169f66d90b6db2a23"
+        AppKey="949838443955b3247f2f5064ab577b85"
+        AppSecret="6bd7fd6c853753d279b3f95ee139fbf2"
         RedirectUri="http://www.sharesdk.cn"
         Enable="true" />
     
