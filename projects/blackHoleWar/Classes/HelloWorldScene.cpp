@@ -84,7 +84,10 @@ bool HelloWorld::init()
 	p->link();
 	p->updateUniforms();
 	pSprite->setShaderProgram(p);
-
+	GLuint radius = glGetUniformLocation(getShaderProgram()->getProgram(), "radius");
+	GLuint angle = glGetUniformLocation(getShaderProgram()->getProgram(), "angle");
+	pSprite->getShaderProgram()->setUniformLocationWith1f(radius, 2.0f);
+	pSprite->getShaderProgram()->setUniformLocationWith1f(angle, 2.0f);
     return true;
 }
 
@@ -101,4 +104,14 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 //    exit(0);
 //#endif
 //#endif
+
+	//设置Shader的参数。
+	//GLProgramState* programstate = getGLProgramState();
+	//
+	//programstate->setUniformFloat("radius", m_radius);
+	//programstate->setUniformFloat("angle", m_angle);
+	//programstate->setUniformTexture("u_texture", m_pTarget->getSprite()->getTexture());
+
+
+
 }
