@@ -57,7 +57,7 @@ void ShareSdk::shareResultHandler(C2DXResponseState state, C2DXPlatType platType
 			ShareSdk::showShareResultToast("分享失败");
 			break;
 		case C2DXResponseStateBegin:
-			ShareSdk::showShareResultToast("分享开始");
+			ShareSdk::showShareResultToast("分享开");
 			break;
 		case C2DXResponseStateCancel:
 			ShareSdk::showShareResultToast("分享取消");

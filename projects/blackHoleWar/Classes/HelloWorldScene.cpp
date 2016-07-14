@@ -3,7 +3,7 @@
 #include "script_support/CCScriptSupport.h"
 #include "CCLuaEngine.h"
 #include "3rdplatform/shareimplement.h"
-USING_NS_CC;
+
 
 CCScene* HelloWorld::scene()
 {
@@ -23,6 +23,13 @@ CCScene* HelloWorld::scene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
+	m_Time = 0.0f;
+	m_maxTime = 2000.0f;
+	m_angle = 0.0f;
+	m_radius = 0.0f;
+	m_angleSpeed = 1.5f;
+	m_radiusSpeed = 0.5f;
+	gettimeofday(&m_lasttime, nullptr);
     //////////////////////////////
     // 1. super init first
     if ( !CCLayer::init() )
@@ -68,29 +75,60 @@ bool HelloWorld::init()
     this->addChild(pLabel, 1);
 
     // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+	m_pSprite = CCSprite::create("Sea.jpg");
 
     // position the sprite on the center of the screen
-    pSprite->setPosition(ccp(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+	m_pSprite->setPosition(ccp(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
     // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
+	this->addChild(m_pSprite, 0);
     
 	CCGLProgram * p = new CCGLProgram();
-	p->initWithVertexShaderFilename("gray.vsh", "gray.fsh");
+	p->initWithVertexShaderFilename("Vortex.vsh", "Vortex.fsh");
 	p->addAttribute(kCCAttributeNamePosition, kCCVertexAttrib_Position);
 	p->addAttribute(kCCAttributeNameColor, kCCVertexAttrib_Color);
 	p->addAttribute(kCCAttributeNameTexCoord, kCCVertexAttrib_TexCoords);
 	p->link();
 	p->updateUniforms();
-	pSprite->setShaderProgram(p);
-	GLuint radius = glGetUniformLocation(getShaderProgram()->getProgram(), "radius");
-	GLuint angle = glGetUniformLocation(getShaderProgram()->getProgram(), "angle");
-	pSprite->getShaderProgram()->setUniformLocationWith1f(radius, 2.0f);
-	pSprite->getShaderProgram()->setUniformLocationWith1f(angle, 2.0f);
+	m_pSprite->setShaderProgram(p);
+	GLuint angle = glGetUniformLocation(m_pSprite->getShaderProgram()->getProgram(), "angle");
+	GLuint radius = glGetUniformLocation(m_pSprite->getShaderProgram()->getProgram(), "radius");
+	
+	m_pSprite->getShaderProgram()->setUniformLocationWith1f(radius, 0.0f);
+	m_pSprite->getShaderProgram()->setUniformLocationWith1f(angle, 0.0f);
+	
+	scheduleUpdate();
     return true;
 }
 
+void HelloWorld::update(float delta)
+{
+	//计算时间间隔
+	timeval		currtime;
+	gettimeofday(&currtime, nullptr);
+	float dt = (currtime.tv_sec - m_lasttime.tv_sec) + (currtime.tv_usec - m_lasttime.tv_usec) / 1000000.0f;
+
+	if (m_Time < m_maxTime)
+	{
+		setAngle(getAngle() + m_angleSpeed*dt);
+		setRadius(getRadius() + m_radiusSpeed*dt);
+		m_Time += dt;
+
+	}
+	else
+	{
+		m_Time = 0.0;
+		setAngle(0.0f);
+		setRadius(0.0f);
+	}
+
+	m_lasttime = currtime;
+	GLuint angle = glGetUniformLocation(m_pSprite->getShaderProgram()->getProgram(), "angle");
+	GLuint radius = glGetUniformLocation(m_pSprite->getShaderProgram()->getProgram(), "radius");
+	m_pSprite->getShaderProgram()->use();
+	m_pSprite->getShaderProgram()->setUniformLocationWith1f(radius, m_radius);
+	m_pSprite->getShaderProgram()->setUniformLocationWith1f(angle, m_angle);
+}
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {

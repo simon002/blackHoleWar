@@ -3,10 +3,10 @@
 #include "HelloWorldScene.h"
 #include "script_support/CCScriptSupport.h"
 #include "CCLuaEngine.h"
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include <jni.h>
 #include "platform/android/jni/JniHelper.h"
-//#endif
+#endif
 using namespace cn::sharesdk;
 USING_NS_CC;
 
