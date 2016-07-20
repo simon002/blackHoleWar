@@ -1,3 +1,4 @@
+#coding:utf-8
 import os
 import os.path
 import hashlib
@@ -30,22 +31,23 @@ def genflist(root_dir):
 	for dirpath , dirnames, filenames in os.walk(root_dir):
 		if root_dir != dirpath:
 			flist = flist + "		{name = \"" + dirpath.replace((root_dir + '\\'),'') + "\"},\n"
-
 	flist = flist + "\n 	},\n 	fileInfoList={\n"
 	#计算所有文件的size和md5
 	for dirpath , dirnames, filenames in os.walk(root_dir):
-		f_dir = dirpath.replace((root_dir + '\\'),'') + "\\"
-		print("bbbbbbbbb")
-		print(f_dir)
+		f_dir = dirpath.replace((root_dir + '\\'),'')
 		for f in filenames:
-
 			f_md5 = calfilemd5(os.path.join(dirpath,f))
 			f_size = calfilesize(os.path.join(dirpath,f))
-			#last_dir = f_dir + f
-			print("aaaaaaaaaaaaa")
-			print(f_dir)
-			flist = flist + "		{name = \"" + f_dir + "\",code = \"" + str(f_md5) + "\",size = " + str(f_size) + "},\n"
-	print(flist)	
+			last_dir = ''
+			if root_dir != f_dir:
+				last_dir = f_dir + '\\' + f
+			else:
+				last_dir = f
+			flist = flist + "		{name = \"" + last_dir + "\",code = \"" + str(f_md5) + "\",size = " + str(f_size) + "},\n"
+	flist = flist + "	},\n}"
+	filehandle = open('flist.lua','w')
+	filehandle.write(flist)
+	filehandle.close()	
 if __name__ == '__main__' :
 	root_dir = sys.argv[1]
 	genflist(root_dir)

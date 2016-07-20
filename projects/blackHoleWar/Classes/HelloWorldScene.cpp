@@ -24,12 +24,13 @@ CCScene* HelloWorld::scene()
 bool HelloWorld::init()
 {
 	m_Time = 0.0f;
-	m_maxTime = 2000.0f;
+	m_maxTime = 200.0f;
 	m_angle = 0.0f;
 	m_radius = 0.0f;
 	m_angleSpeed = 1.5f;
 	m_radiusSpeed = 0.5f;
-	gettimeofday(&m_lasttime, nullptr);
+	m_radius = 0.5f;
+	gettimeofday(&m_lasttime, NULL);
     //////////////////////////////
     // 1. super init first
     if ( !CCLayer::init() )
@@ -75,7 +76,7 @@ bool HelloWorld::init()
     this->addChild(pLabel, 1);
 
     // add "HelloWorld" splash screen"
-	m_pSprite = CCSprite::create("Sea.jpg");
+	m_pSprite = CCSprite::create("HelloWorld.png");
 
     // position the sprite on the center of the screen
 	m_pSprite->setPosition(ccp(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
@@ -105,13 +106,13 @@ void HelloWorld::update(float delta)
 {
 	//计算时间间隔
 	timeval		currtime;
-	gettimeofday(&currtime, nullptr);
+	gettimeofday(&currtime, NULL);
 	float dt = (currtime.tv_sec - m_lasttime.tv_sec) + (currtime.tv_usec - m_lasttime.tv_usec) / 1000000.0f;
 
 	if (m_Time < m_maxTime)
 	{
 		setAngle(getAngle() + m_angleSpeed*dt);
-		setRadius(getRadius() + m_radiusSpeed*dt);
+		//setRadius(getRadius() + m_radiusSpeed*dt);
 		m_Time += dt;
 
 	}
@@ -119,7 +120,7 @@ void HelloWorld::update(float delta)
 	{
 		m_Time = 0.0;
 		setAngle(0.0f);
-		setRadius(0.0f);
+		//setRadius(0.0f);
 	}
 
 	m_lasttime = currtime;

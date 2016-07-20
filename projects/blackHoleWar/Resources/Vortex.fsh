@@ -13,14 +13,25 @@ varying vec2 v_texCoord;
 uniform	float radius ;
 uniform	float angle ;
 
+vec2 vortex2( vec2 uv)
+{
+    uv -= vec2(0.5,0.5);
+	float dis = length(uv);
+	if (dis <= radius)
+	{
+	    uv = vec2(dis * cos(angle),dis * sin(angle));
+	}
+	uv += vec2(0.5,0.5);
+	return uv;
+}
 vec2 vortex( vec2 uv )
 {
 	uv -= vec2(0.5, 0.5);
 	float dist = length(uv);
-	float percent = (0.1 - dist) / 0.1;
+	float percent = (1.0 - dist) / 1.0;
 	if ( percent <= 1.0 && percent >= 0.0) 
 	{
-		float theta = percent * percent * angle * 1.0;
+		float theta = percent * percent * angle * 0.5;
 		float s = sin(theta);
 		float c = cos(theta);
 		uv = vec2(dot(uv, vec2(c, -s)), dot(uv, vec2(s, c)));
