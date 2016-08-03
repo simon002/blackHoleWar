@@ -1,4 +1,5 @@
 -- cclog
+require("lfs")
 print("ffffffffffffffffffffff\0")
 cclog = function(...)
     print(string.format(...))

@@ -29,10 +29,10 @@ extern "C" {
 
 static luaL_Reg luax_exts[] = {
     {"cjson", luaopen_cjson_safe},
-    {"zlib", luaopen_zlib},
+    //{"zlib", luaopen_zlib},
     {"pack", luaopen_pack},
-    {"socket.core", luaopen_socket_core},
-    {"mime.core", luaopen_mime_core},
+    //{"socket.core", luaopen_socket_core},
+    //{"mime.core", luaopen_mime_core},
     {"lfs", luaopen_lfs},
 
 #if CC_SQLITE_ENABLED > 0
@@ -56,7 +56,7 @@ void luaopen_lua_extensions(lua_State *L)
     lua_pop(L, 2);
 
     // load extensions script
-    luaopen_socket_scripts(L);
+    //luaopen_socket_scripts(L);
 }
 
 #if __cplusplus

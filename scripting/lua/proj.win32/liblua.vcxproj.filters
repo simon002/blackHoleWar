@@ -16,6 +16,27 @@
     <Filter Include="xxtea">
       <UniqueIdentifier>{7ef5a711-27f8-41a0-989f-538b7b1f4482}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lua_extensions">
+      <UniqueIdentifier>{d04a4e4d-3b1b-4715-a51c-327c1598a523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_extensions\filesystem">
+      <UniqueIdentifier>{32910b26-2afb-465c-9743-f26e0115d27f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_extensions\cjson">
+      <UniqueIdentifier>{65e22597-c4f1-4097-9268-e5c5bfbfc5bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_extensions\debugger">
+      <UniqueIdentifier>{30cb7c7b-e8a5-4b41-9edf-f4f45311a0fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_extensions\lpack">
+      <UniqueIdentifier>{7eb7b575-a513-44af-a603-a9081d5d0dcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_extensions\lsqlite3">
+      <UniqueIdentifier>{b6565d45-01fa-4fa4-b7e9-83b579622b96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua_extensions\zlib">
+      <UniqueIdentifier>{d042868a-fb4a-447c-b9d0-3f01e5e9b891}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\tolua\tolua_event.c">
@@ -77,6 +98,36 @@
     </ClCompile>
     <ClCompile Include="..\xxtea\xxtea.cpp">
       <Filter>xxtea</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\lua_extensions.c">
+      <Filter>lua_extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\filesystem\lfs.c">
+      <Filter>lua_extensions\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\cjson\fpconv.c">
+      <Filter>lua_extensions\cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\cjson\lua_cjson.c">
+      <Filter>lua_extensions\cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\cjson\strbuf.c">
+      <Filter>lua_extensions\cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\debugger\debugger.c">
+      <Filter>lua_extensions\debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\lpack\lpack.c">
+      <Filter>lua_extensions\lpack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\lsqlite3\lsqlite3.c">
+      <Filter>lua_extensions\lsqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\lsqlite3\sqlite3.c">
+      <Filter>lua_extensions\lsqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua_extensions\zlib\lua_zlib.c">
+      <Filter>lua_extensions\zlib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,5 +194,39 @@
     <ClInclude Include="..\xxtea\xxtea.h">
       <Filter>xxtea</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\lua_extensions\lua_extensions.h">
+      <Filter>lua_extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua_extensions\filesystem\lfs.h">
+      <Filter>lua_extensions\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua_extensions\cjson\fpconv.h">
+      <Filter>lua_extensions\cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua_extensions\cjson\lua_cjson.h">
+      <Filter>lua_extensions\cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua_extensions\cjson\strbuf.h">
+      <Filter>lua_extensions\cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua_extensions\debugger\debugger.h">
+      <Filter>lua_extensions\debugger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua_extensions\lpack\lpack.h">
+      <Filter>lua_extensions\lpack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua_extensions\lsqlite3\lsqlite3.h">
+      <Filter>lua_extensions\lsqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua_extensions\lsqlite3\sqlite3.h">
+      <Filter>lua_extensions\lsqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua_extensions\zlib\lua_zlib.h">
+      <Filter>lua_extensions\zlib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="liblua.rc" />
   </ItemGroup>
 </Project>

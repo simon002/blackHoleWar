@@ -3,6 +3,8 @@
 #include "HelloWorldScene.h"
 #include "script_support/CCScriptSupport.h"
 #include "CCLuaEngine.h"
+#include "../../../scripting/lua/lua_extensions/filesystem/lfs.h"
+#include "../../../scripting/lua/lua_extensions/lua_extensions.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include <jni.h>
 #include "platform/android/jni/JniHelper.h"
@@ -54,15 +56,15 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = HelloWorld::scene();
-
-    // run
-    pDirector->runWithScene(pScene);
-	//CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
-	//CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
-
-	//std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("scripts/hello.lua");
-	//pEngine->executeScriptFile(path.c_str());
+   // CCScene *pScene = HelloWorld::scene();
+   //
+   // // run
+   // pDirector->runWithScene(pScene);
+	CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
+	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
+	luaopen_lua_extensions(pEngine->getLuaStack()->getLuaState());
+	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("scripts/hello.lua");
+	pEngine->executeScriptFile(path.c_str());
 	ShareImplement::shareInstance()->setShareInterface(new ShareSdk);
 	ShareImplement::shareInstance()->initShareSDK();
 	ShareImplement::shareInstance()->configSharePlatform();

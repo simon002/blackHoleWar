@@ -43,7 +43,7 @@ def genflist(root_dir):
 				last_dir = f_dir + '\\' + f
 			else:
 				last_dir = f
-			flist = flist + "		{name = \"" + last_dir + "\",code = \"" + str(f_md5) + "\",size = " + str(f_size) + "},\n"
+			flist = flist + "		{name = \"" + last_dir + "\",md5 = \"" + str(f_md5) + "\",size = " + str(f_size) + "},\n"
 	flist = flist + "	},\n}"
 	filehandle = open('flist.lua','w')
 	filehandle.write(flist)
