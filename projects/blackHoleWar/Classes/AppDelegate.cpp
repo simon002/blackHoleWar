@@ -60,7 +60,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
    //
    // // run
    // pDirector->runWithScene(pScene);
+	
 	CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
+	pEngine->addSearchPath("scripts");
 	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 	luaopen_lua_extensions(pEngine->getLuaStack()->getLuaState());
 	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("scripts/hello.lua");

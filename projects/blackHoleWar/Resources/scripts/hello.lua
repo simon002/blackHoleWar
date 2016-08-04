@@ -1,5 +1,6 @@
 -- cclog
 require("lfs")
+require("launcher")
 print("ffffffffffffffffffffff\0")
 cclog = function(...)
     print(string.format(...))
