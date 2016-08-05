@@ -60,7 +60,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
    //
    // // run
    // pDirector->runWithScene(pScene);
-	
+	 char set2[8] = { 0x4a, 0x9a, 0x2f, 0x1a, 0x5f, 0x06, 0xfc, 0xc3 };
+	int jj = strlen((char*)set2);
 	CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
 	pEngine->addSearchPath("scripts");
 	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);

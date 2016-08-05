@@ -32,6 +32,13 @@ def pack_scripts():
 			compile_zip(file_path,os.path.join(target_path, file + '.zip'))
 		elif os.path.isfile(file_path) and re.match(r'(.*?)\.lua$',file):
 			shutil.copy(file_path,target_path)
+	build_resinfo()
+
 def build_resinfo():
-	zip_path = os.path.join(CUR_PY_DIR,'')
+	zip_path = os.path.join(CUR_PY_DIR,'out')
+	target_path = CUR_PY_DIR
+	files = os.listdir(zip_path)
+	for file in files:
+		if re.match(r'(.*?)\.zip$',file):
+			print(file)
 pack_scripts()
