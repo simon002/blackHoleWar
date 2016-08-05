@@ -226,7 +226,4 @@
       <Filter>lua_extensions\zlib</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="liblua.rc" />
-  </ItemGroup>
 </Project>

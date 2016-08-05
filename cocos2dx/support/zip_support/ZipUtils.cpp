@@ -31,6 +31,8 @@
 #include "unzip.h"
 #include <map>
 
+//#include "apptools/HelperFunc.h"
+ 
 NS_CC_BEGIN
 
 unsigned int ZipUtils::s_uEncryptedPvrKeyParts[4] = {0,0,0,0};
@@ -309,6 +311,7 @@ int ZipUtils::ccInflateCCZFile(const char *path, unsigned char **out)
     
     unsigned long fileLen = 0;
     compressed = CCFileUtils::sharedFileUtils()->getFileData(path, "rb", &fileLen);
+   // compressed = CZHelperFunc::getFileData(path, "rb", &fileLen);
     
     if(NULL == compressed || 0 == fileLen)
     {
@@ -362,7 +365,7 @@ int ZipUtils::ccInflateCCZFile(const char *path, unsigned char **out)
         
         // decrypt
         unsigned int* ints = (unsigned int*)(compressed+12);
-        int enclen = (fileLen-12)/4;
+        int enclen = (int)(fileLen - 12) / 4;
         
         ccDecodeEncodedPvr(ints, enclen);
                 

@@ -801,6 +801,15 @@ unzFile ZEXPORT unzOpen64 (const void *path)
     return unzOpenInternal(path, NULL, 1);
 }
 
+unzFile ZEXPORT unzOpenBuffer (const  void* buffer, uLong size)
+{
+    char path[48] = {0};
+    zlib_filefunc64_32_def memory_file;
+    sprintf(path, "%llx %lx", (unsigned long long)buffer, (unsigned long)size);
+    fill_memory_filefunc64_32(&memory_file);
+    return unzOpenInternal(path, &memory_file, 0);
+}
+
 /*
   Close a ZipFile opened with unzipOpen.
   If there is files inside the .Zip opened with unzipOpenCurrentFile (see later),
@@ -1715,7 +1724,7 @@ ZPOS64_T ZEXPORT unzGetCurrentFileZStreamPos64( unzFile file)
   return <0 with error code if there is an error
     (UNZ_ERRNO for IO error, or zLib error for uncompress error)
 */
-int ZEXPORT unzReadCurrentFile  (unzFile file, voidp buf, unsigned len)
+int ZEXPORT unzReadCurrentFile  (unzFile file, voidp buf, uLong len)
 {
     int err=UNZ_OK;
     uInt iRead = 0;

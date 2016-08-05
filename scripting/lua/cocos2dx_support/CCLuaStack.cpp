@@ -39,7 +39,7 @@ extern "C" {
 #include "lua_cocos2dx_extensions_manual.h"
 #include "lua_cocos2dx_cocostudio_manual.h"
 #include "xxtea.h"
-
+#include "platform/CCZipFile.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 #include "platform/ios/CCLuaObjcBridge.h"
 #endif
@@ -97,6 +97,7 @@ CCLuaStack *CCLuaStack::create(void)
     stack->autorelease();
     return stack;
 }
+
 
 CCLuaStack *CCLuaStack::attach(lua_State *L)
 {
@@ -566,6 +567,101 @@ void CCLuaStack::cleanupXXTEAKeyAndSign()
         m_xxteaSign = NULL;
         m_xxteaSignLen = 0;
     }
+}
+
+int CCLuaStack::lua_loadChunksFromZIP(lua_State *L)
+{
+	if (lua_gettop(L) < 1)
+	{
+		CCLOG("lua_loadChunksFromZIP() - invalid arguments");
+		return 0;
+	}
+
+	const char *zipFilename = lua_tostring(L, -1);
+	lua_settop(L, 0);
+	CCFileUtils *utils = CCFileUtils::sharedFileUtils();
+	string zipFilePath = utils->fullPathForFilename(zipFilename);
+	zipFilename = NULL;
+
+	CCLuaStack *stack = this;
+
+	do
+	{
+		unsigned long size = 0;
+		void *buffer = NULL;
+		unsigned char *zipFileData = utils->getFileData(zipFilePath.c_str(), "rb", &size);
+		CCZipFile *zip = NULL;
+
+		bool isXXTEA = stack && stack->m_xxteaEnabled && zipFileData;
+		for (unsigned int i = 0; isXXTEA && i < stack->m_xxteaSignLen && i < size; ++i)
+		{
+			isXXTEA = zipFileData[i] == stack->m_xxteaSign[i];
+		}
+
+		if (isXXTEA)
+		{
+			// decrypt XXTEA
+			xxtea_long len = 0;
+			buffer = xxtea_decrypt(zipFileData + stack->m_xxteaSignLen,
+				(xxtea_long)size - (xxtea_long)stack->m_xxteaSignLen,
+				(unsigned char*)stack->m_xxteaKey,
+				(xxtea_long)stack->m_xxteaKeyLen,
+				&len);
+			delete[]zipFileData;
+			zipFileData = NULL;
+			zip = CCZipFile::createWithBuffer(buffer, len);
+		}
+		else
+		{
+			if (zipFileData) {
+				zip = CCZipFile::createWithBuffer(zipFileData, size);
+			}
+		}
+
+		if (zip)
+		{
+			CCLOG("lua_loadChunksFromZIP() - load zip file: %s%s", zipFilePath.c_str(), isXXTEA ? "*" : "");
+			lua_getglobal(L, "package");
+			lua_getfield(L, -1, "preload");
+
+			int count = 0;
+			string filename = zip->getFirstFilename();
+			while (filename.length())
+			{
+				unsigned long bufferSize = 0;
+				unsigned char *buffer = zip->getFileData(filename.c_str(), &bufferSize);
+				if (bufferSize)
+				{
+					if (luaLoadBuffer(L, (char*)buffer, (int)bufferSize, filename.c_str()) == 0)
+					{
+						lua_setfield(L, -2, filename.c_str());
+						++count;
+					}
+					delete[]buffer;
+				}
+				filename = zip->getNextFilename();
+			}
+			CCLOG("lua_loadChunksFromZIP() - loaded chunks count: %d", count);
+			lua_pop(L, 2);
+			lua_pushboolean(L, 1);
+		}
+		else
+		{
+			CCLOG("lua_loadChunksFromZIP() - not found or invalid zip file: %s", zipFilePath.c_str());
+			lua_pushboolean(L, 0);
+		}
+
+		if (zipFileData)
+		{
+			delete[]zipFileData;
+		}
+		if (buffer)
+		{
+			free(buffer);
+		}
+	} while (0);
+
+	return 1;
 }
 
 int CCLuaStack::luaLoadBuffer(lua_State* L, const char* chunk, int chunkSize, const char* chunkName)

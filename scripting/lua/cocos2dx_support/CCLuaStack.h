@@ -33,17 +33,19 @@ extern "C" {
 #include "cocoa/CCObject.h"
 #include "CCLuaValue.h"
 
+using namespace std;
 NS_CC_BEGIN
 /** Lua support for cocos2d-x
  *  @js NA
  *  @lua NA
  */
+
 class CCLuaStack : public CCObject
 {
 public:
     static CCLuaStack *create(void);
     static CCLuaStack *attach(lua_State *L);
-    
+	CCLuaStack *stack(lua_State *L);
     /**
      @brief Method used to get a pointer to the lua_State that the script module is attached to.
      @return A pointer to the lua_State that the script module is attached to.
@@ -124,7 +126,7 @@ public:
     void setXXTEAKeyAndSign(const char *key, int keyLen, const char *sign, int signLen);
     void cleanupXXTEAKeyAndSign();
     int luaLoadBuffer(lua_State* L, const char* chunk, int chunkSize, const char* chunkName);
-    
+	int lua_loadChunksFromZIP(lua_State *L);
     
 protected:
     CCLuaStack(void)

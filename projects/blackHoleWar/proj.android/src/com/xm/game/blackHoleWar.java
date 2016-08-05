@@ -24,13 +24,13 @@ THE SOFTWARE.
 package com.xm.game;
 import cn.sharesdk.*;
 
-import com.mob.tools.utils.R;
-import com.tencent.*;
-import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
-import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
-import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
+//import com.mob.tools.utils.R;
+//import com.tencent.*;
+//import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
+//import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
+//import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
+//import com.tencent.mm.sdk.openapi.IWXAPI;
+//import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
@@ -45,8 +45,8 @@ import android.os.Message;
 import android.widget.Toast;
 
 public class blackHoleWar extends Cocos2dxActivity{
-	private static final String APP_ID = "wx4d7504c20ece06ed";//AppID���ӵ��Ĳ���ȡ
-	private static IWXAPI api;//΢��API�ӿ�
+	//private static final String APP_ID = "wx4d7504c20ece06ed";//AppID���ӵ��Ĳ���ȡ
+	//private static IWXAPI api;//΢��API�ӿ�
 	private static blackHoleWar instance;//�ྲ̬ʵ��Ϊ�˷�����澲̬����ĵ���
 	private static final int SHOW_MESSAGE = 0;
 	private static final Handler msgHandler = new Handler(){  
@@ -62,31 +62,31 @@ public class blackHoleWar extends Cocos2dxActivity{
 		ShareSDKUtils.prepare();
 	}
     private void regToWX(){
-        api = WXAPIFactory.createWXAPI(this, APP_ID, true);
-        api.registerApp(APP_ID);
+        //api = WXAPIFactory.createWXAPI(this, APP_ID, true);
+        //api.registerApp(APP_ID);
     }
 
 public static void sendMsgToFriend(){
  
-    if(api.openWXApp())
-    {
-        WXWebpageObject webpage = new WXWebpageObject();
-        webpage.webpageUrl = "http://www.fusijie.com";
-        WXMediaMessage msg = new WXMediaMessage(webpage);
-        msg.title = "Tittle";
-        msg.description = "Description";
- 
-        //Bitmap thumb = BitmapFactory.decodeResource(instance.getResources(), R.drawable.icon);
-        //msg.thumbData = Util.bmpToByteArray(thumb, true);
- 
-        //SendMessageToWX.Req req = new SendMessageToWX.Req();
-        //req.transaction = buildTransaction("webpage");
-        //req.message = msg;
-        //req.scene = SendMessageToWX.Req.WXSceneSession;
-       // api.sendReq(req);
-    }
-    else
-    {
+    //if(api.openWXApp())
+    //{
+    //    WXWebpageObject webpage = new WXWebpageObject();
+    //    webpage.webpageUrl = "http://www.fusijie.com";
+    //    WXMediaMessage msg = new WXMediaMessage(webpage);
+    //    msg.title = "Tittle";
+    //    msg.description = "Description";
+    //
+    //    //Bitmap thumb = BitmapFactory.decodeResource(instance.getResources(), R.drawable.icon);
+    //    //msg.thumbData = Util.bmpToByteArray(thumb, true);
+    //
+    //    //SendMessageToWX.Req req = new SendMessageToWX.Req();
+    //    //req.transaction = buildTransaction("webpage");
+    //    //req.message = msg;
+    //    //req.scene = SendMessageToWX.Req.WXSceneSession;
+    //   // api.sendReq(req);
+    //}
+    //else
+    //{
     	///Looper.prepare();
          //Toast.makeText(instance, "δ��װ΢��", Toast.LENGTH_SHORT).show();
          //Looper.loop();
@@ -97,7 +97,7 @@ public static void sendMsgToFriend(){
           //msg.what=SHOW_MESSAGE;  
           //msg.obj="showmessage demos";  //���Դ��ݲ���  
           //handler.sendMessage(msg);
-    }
+    //}
 }
 
 public static void shareTips(String tips){
@@ -109,33 +109,33 @@ public static void shareTips(String tips){
 
 public static void sendMsgToTimeLine(){
  
-    if(api.openWXApp())
-    {
-        if(api.getWXAppSupportAPI() >= 0x21020001)
-        {               
-            WXWebpageObject webpage = new WXWebpageObject();
-            webpage.webpageUrl = "http://www.fusijie.com";
-            WXMediaMessage msg = new WXMediaMessage(webpage);
-            msg.title = "Tittle";
-            msg.description = "Description";
- 
-           // Bitmap thumb = BitmapFactory.decodeResource(instance.getResources(), R.drawable.icon);
-           // msg.thumbData = Util.bmpToByteArray(thumb, true);
- 
-            SendMessageToWX.Req req = new SendMessageToWX.Req();
-            req.transaction = buildTransaction("webpage");
-            req.message = msg;
-            req.scene = SendMessageToWX.Req.WXSceneTimeline;
-            api.sendReq(req);
-        }
-        else{
-            Toast.makeText(instance, "΢�Ű汾���", Toast.LENGTH_SHORT).show();
-        }
-    }
-    else
-    {
-         Toast.makeText(instance, "δ��װ΢��", Toast.LENGTH_SHORT).show();
-    }
+  //  if(api.openWXApp())
+  //  {
+  //      if(api.getWXAppSupportAPI() >= 0x21020001)
+  //      {               
+  //          WXWebpageObject webpage = new WXWebpageObject();
+  //          webpage.webpageUrl = "http://www.fusijie.com";
+  //          WXMediaMessage msg = new WXMediaMessage(webpage);
+  //          msg.title = "Tittle";
+  //          msg.description = "Description";
+  //
+  //         // Bitmap thumb = BitmapFactory.decodeResource(instance.getResources(), R.drawable.icon);
+  //         // msg.thumbData = Util.bmpToByteArray(thumb, true);
+  //
+  //          SendMessageToWX.Req req = new SendMessageToWX.Req();
+  //          req.transaction = buildTransaction("webpage");
+  //          req.message = msg;
+  //          req.scene = SendMessageToWX.Req.WXSceneTimeline;
+  //          api.sendReq(req);
+  //      }
+  //      else{
+  //          Toast.makeText(instance, "΢�Ű汾���", Toast.LENGTH_SHORT).show();
+  //      }
+  //  }
+  //  else
+  //  {
+  //       Toast.makeText(instance, "δ��װ΢��", Toast.LENGTH_SHORT).show();
+  //  }
 }
 private static String buildTransaction(final String type) {
     return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
