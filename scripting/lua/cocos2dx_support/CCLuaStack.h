@@ -126,8 +126,8 @@ public:
     void setXXTEAKeyAndSign(const char *key, int keyLen, const char *sign, int signLen);
     void cleanupXXTEAKeyAndSign();
     int luaLoadBuffer(lua_State* L, const char* chunk, int chunkSize, const char* chunkName);
-	int lua_loadChunksFromZIP(lua_State *L);
-    
+	static int lua_loadChunksFromZIP(lua_State *L);
+	int loadChunksFromZIP(const char *zipFilePath);
 protected:
     CCLuaStack(void)
     : m_state(NULL)
@@ -150,6 +150,7 @@ protected:
     int   m_xxteaKeyLen;
     char* m_xxteaSign;
     int   m_xxteaSignLen;
+	static CCLuaStack* s_stack;
 };
 
 NS_CC_END

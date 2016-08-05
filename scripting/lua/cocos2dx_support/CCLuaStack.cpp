@@ -129,7 +129,9 @@ bool CCLuaStack::init(void)
     register_all_cocos2dx_studio_manual(m_state);
     // add cocos2dx loader
     addLuaLoader(cocos2dx_lua_loader);
-
+	lua_pushcfunction(m_state, lua_loadChunksFromZIP);
+	lua_setglobal(m_state, "CCLuaLoadChunksFromZIP");
+	s_stack = this;
     return true;
 }
 
@@ -553,6 +555,15 @@ void CCLuaStack::setXXTEAKeyAndSign(const char *key, int keyLen, const char *sig
     }
 }
 
+int CCLuaStack::loadChunksFromZIP(const char *zipFilePath)
+{
+	pushString(zipFilePath);
+	lua_loadChunksFromZIP(m_state);
+	int ret = lua_toboolean(m_state, -1);
+	lua_pop(m_state, 1);
+	return ret;
+}
+
 void CCLuaStack::cleanupXXTEAKeyAndSign()
 {
     if (m_xxteaKey)
@@ -583,7 +594,7 @@ int CCLuaStack::lua_loadChunksFromZIP(lua_State *L)
 	string zipFilePath = utils->fullPathForFilename(zipFilename);
 	zipFilename = NULL;
 
-	CCLuaStack *stack = this;
+	CCLuaStack *stack = s_stack;
 
 	do
 	{
