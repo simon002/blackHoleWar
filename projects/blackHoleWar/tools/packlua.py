@@ -25,20 +25,33 @@ def pack_scripts():
 	target_path = os.path.join(CUR_PY_DIR,'out')
 	if os.path.isdir(target_path):
 		shutil.rmtree(target_path)
+		shutil.makedirs(target_path)
 	files = os.listdir(lua_root)
 	for file in files:
 		file_path = os.path.join(lua_root,file)
 		if os.path.isdir(file_path):
 			compile_zip(file_path,os.path.join(target_path, file + '.zip'))
 		elif os.path.isfile(file_path) and re.match(r'(.*?)\.lua$',file):
+			print("bbbbbbbbbbbbbbbbbbbbbbbbb")
+
+	
+			#target_path = target_path + '\\' + file;
+			print(file_path)
+			print(target_path)
 			shutil.copy(file_path,target_path)
 	build_resinfo()
 
 def build_resinfo():
+	res_file = 'local data = {\n'
 	zip_path = os.path.join(CUR_PY_DIR,'out')
 	target_path = CUR_PY_DIR
 	files = os.listdir(zip_path)
 	for file in files:
 		if re.match(r'(.*?)\.zip$',file):
-			
+			res_file = res_file + '		\"scripts\\' + file + '\",\n'
+	res_file = res_file + '}\n'
+	res_file = res_file + 'return data'
+	filehandle = open('resinfo.lua','w')
+	filehandle.write(res_file)
+	filehandle.close()				
 pack_scripts()

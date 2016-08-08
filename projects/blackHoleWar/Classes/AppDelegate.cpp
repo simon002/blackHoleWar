@@ -60,13 +60,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
    //
    // // run
    // pDirector->runWithScene(pScene);
-	char set2[2] = { 0x4a,0x30 };// , 0x9a, 0x2f, 0x1a, 0x5f, 0x06, 0xfc, 0xc3, 0x30};
-	int jj = strlen((char*)set2);
+
 	CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
 	pEngine->addSearchPath("scripts");
 	CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 	luaopen_lua_extensions(pEngine->getLuaStack()->getLuaState());
-	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("scripts/hello.lua");
+	std::string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("scripts/boot.lua");
 	pEngine->executeScriptFile(path.c_str());
 	ShareImplement::shareInstance()->setShareInterface(new ShareSdk);
 	ShareImplement::shareInstance()->initShareSDK();
