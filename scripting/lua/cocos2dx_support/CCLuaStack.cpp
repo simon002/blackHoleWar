@@ -89,7 +89,7 @@ int lua_print(lua_State * luastate)
 }  // namespace {
 
 NS_CC_BEGIN
-
+CCLuaStack* CCLuaStack::s_stack;
 CCLuaStack *CCLuaStack::create(void)
 {
     CCLuaStack *stack = new CCLuaStack();
@@ -643,7 +643,7 @@ int CCLuaStack::lua_loadChunksFromZIP(lua_State *L)
 				unsigned char *buffer = zip->getFileData(filename.c_str(), &bufferSize);
 				if (bufferSize)
 				{
-					if (luaLoadBuffer(L, (char*)buffer, (int)bufferSize, filename.c_str()) == 0)
+					if (stack->luaLoadBuffer(L, (char*)buffer, (int)bufferSize, filename.c_str()) == 0)
 					{
 						lua_setfield(L, -2, filename.c_str());
 						++count;
@@ -674,6 +674,7 @@ int CCLuaStack::lua_loadChunksFromZIP(lua_State *L)
 
 	return 1;
 }
+
 
 int CCLuaStack::luaLoadBuffer(lua_State* L, const char* chunk, int chunkSize, const char* chunkName)
 {
