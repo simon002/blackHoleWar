@@ -40,5 +40,5 @@ def build_resinfo():
 	files = os.listdir(zip_path)
 	for file in files:
 		if re.match(r'(.*?)\.zip$',file):
-			print(file)
+			
 pack_scripts()
