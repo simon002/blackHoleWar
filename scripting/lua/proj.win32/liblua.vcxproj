@@ -67,8 +67,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\..\CocosDenshion\include;$(ProjectDir)..\..\..\extensions;$(ProjectDir)..\..\..\extensions\network;$(ProjectDir)..\..\..\external\libwebsockets\win32\include;$(ProjectDir)..\tolua;$(ProjectDir)..\luajit\include;$(ProjectDir)..\xxtea;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;%(PreprocessorDefinitions);COCOS2D_DEBUG</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\cocos2dx;$(ProjectDir)..\..\..\cocos2dx\include;$(ProjectDir)..\..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\..\CocosDenshion\include;$(ProjectDir)..\..\..\extensions;$(ProjectDir)..\..\..\extensions\network;$(ProjectDir)..\..\..\external\libwebsockets\win32\include;$(ProjectDir)..\tolua;$(ProjectDir)..\luajit\include;$(ProjectDir)..\xxtea;$(ProjectDir)..\extra;$(ProjectDir)..\cocos2dx_support;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;%(PreprocessorDefinitions);COCOS2D_DEBUG;CC_LUA_ENGINE_ENABLED;CC_CURL_ENABLED</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -139,6 +139,9 @@ xcopy /Y /Q "$(ProjectDir)..\luajit\win32\*.*" "$(OutDir)"</Command>
     <ClCompile Include="..\cocos2dx_support\Lua_extensions_CCB.cpp" />
     <ClCompile Include="..\cocos2dx_support\Lua_web_socket.cpp" />
     <ClCompile Include="..\cocos2dx_support\tolua_fix.c" />
+    <ClCompile Include="..\extra\luabinding\cocos2dx_httprequest_luabinding.cpp" />
+    <ClCompile Include="..\extra\network\CCHTTPRequest.cpp" />
+    <ClCompile Include="..\extra\network\CCNetwork.cpp" />
     <ClCompile Include="..\lua_extensions\cjson\fpconv.c" />
     <ClCompile Include="..\lua_extensions\cjson\lua_cjson.c" />
     <ClCompile Include="..\lua_extensions\cjson\strbuf.c" />
@@ -171,6 +174,11 @@ xcopy /Y /Q "$(ProjectDir)..\luajit\win32\*.*" "$(OutDir)"</Command>
     <ClInclude Include="..\cocos2dx_support\Lua_extensions_CCB.h" />
     <ClInclude Include="..\cocos2dx_support\Lua_web_socket.h" />
     <ClInclude Include="..\cocos2dx_support\tolua_fix.h" />
+    <ClInclude Include="..\extra\cocos2dx_extra.h" />
+    <ClInclude Include="..\extra\luabinding\cocos2dx_httprequest_luabinding.h" />
+    <ClInclude Include="..\extra\network\CCHTTPRequest.h" />
+    <ClInclude Include="..\extra\network\CCHTTPRequestDelegate.h" />
+    <ClInclude Include="..\extra\network\CCNetwork.h" />
     <ClInclude Include="..\luajit\include\lauxlib.h" />
     <ClInclude Include="..\luajit\include\lua.h" />
     <ClInclude Include="..\luajit\include\luaconf.h" />

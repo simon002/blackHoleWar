@@ -38,6 +38,7 @@ extern "C" {
 #include "lua_cocos2dx_manual.h"
 #include "lua_cocos2dx_extensions_manual.h"
 #include "lua_cocos2dx_cocostudio_manual.h"
+#include "../extra/luabinding/cocos2dx_httprequest_luabinding.h"
 #include "xxtea.h"
 #include "platform/CCZipFile.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
@@ -124,6 +125,8 @@ bool CCLuaStack::init(void)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
     CCLuaObjcBridge::luaopen_luaoc(m_state);
 #endif
+
+	luaopen_cocos2dx_httprequest_luabinding(m_state);
     register_all_cocos2dx_manual(m_state);
     register_all_cocos2dx_extension_manual(m_state);
     register_all_cocos2dx_studio_manual(m_state);
@@ -723,3 +726,81 @@ int CCLuaStack::luaLoadBuffer(lua_State* L, const char* chunk, int chunkSize, co
 }
 
 NS_CC_END
+
+USING_NS_CC;
+
+static map<unsigned int, char*> hash_type_mapping;
+
+static unsigned int _Hash(const char *key)
+{
+	unsigned int len = (unsigned int)strlen(key);
+	const char *end = key + len;
+	unsigned int hash;
+
+	for (hash = 0; key < end; key++)
+	{
+		hash *= 16777619;
+		hash ^= (unsigned int)(unsigned char)toupper(*key);
+	}
+	return (hash);
+}
+
+unsigned int class_hash_code(const std::type_info& info)
+{
+	// hash name() to size_t value by pseudorandomizing transform
+	return _Hash(info.name());
+}
+
+TOLUA_API void toluafix_add_type_mapping(unsigned int type, const char *clsName)
+{
+	if (hash_type_mapping.find(type) == hash_type_mapping.end())
+	{
+		hash_type_mapping[type] = strdup(clsName);
+	}
+}
+
+TOLUA_API int toluafix_pushusertype_ccobject(lua_State *L,
+	int refid,
+	int *p_refid,
+	void *vptr,
+	const char *vtype)
+{
+	if (vptr == NULL || p_refid == NULL)
+	{
+		lua_pushnil(L);
+		return -1;
+	}
+
+	CCObject *ptr = static_cast<CCObject*>(vptr);
+	unsigned int hash = class_hash_code(typeid(*ptr));
+	char* type = hash_type_mapping[hash];
+	if (type == NULL)
+	{
+		// CCLOG("[TOLUA] Unable to find type map for object %s:%p,", vtype, vptr);
+	}
+
+	if (*p_refid == 0)
+	{
+		*p_refid = refid;
+
+		lua_pushstring(L, TOLUA_REFID_PTR_MAPPING);
+		lua_rawget(L, LUA_REGISTRYINDEX);                           /* stack: refid_ptr */
+		lua_pushinteger(L, refid);                                  /* stack: refid_ptr refid */
+		lua_pushlightuserdata(L, ptr);                              /* stack: refid_ptr refid ptr */
+
+		lua_rawset(L, -3);                  /* refid_ptr[refid] = ptr, stack: refid_ptr */
+		lua_pop(L, 1);                                              /* stack: - */
+
+		lua_pushstring(L, TOLUA_REFID_TYPE_MAPPING);
+		lua_rawget(L, LUA_REGISTRYINDEX);                           /* stack: refid_type */
+		lua_pushinteger(L, refid);                                  /* stack: refid_type refid */
+		lua_pushstring(L, type ? type : vtype);                     /* stack: refid_type refid type */
+		lua_rawset(L, -3);                /* refid_type[refid] = type, stack: refid_type */
+		lua_pop(L, 1);                                              /* stack: - */
+
+		//printf("[LUA] push CCObject OK - refid: %d, ptr: %x, type: %s\n", *p_refid, (int)ptr, type);
+	}
+
+	tolua_pushusertype_and_addtoroot(L, ptr, type ? type : vtype);
+	return 0;
+}
