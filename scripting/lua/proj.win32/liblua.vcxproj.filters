@@ -46,6 +46,9 @@
     <Filter Include="extra\luabinding">
       <UniqueIdentifier>{ebcf3ba8-7788-486d-9775-b769407043df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="extra\apptools">
+      <UniqueIdentifier>{4056566e-0227-4d36-a85d-8bffe932f0d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\tolua\tolua_event.c">
@@ -145,6 +148,12 @@
       <Filter>extra\network</Filter>
     </ClCompile>
     <ClCompile Include="..\extra\luabinding\cocos2dx_httprequest_luabinding.cpp">
+      <Filter>extra\luabinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\apptools\HelperFunc.cpp">
+      <Filter>extra\apptools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\extra\luabinding\CZHelperFunc_luabinding.cpp">
       <Filter>extra\luabinding</Filter>
     </ClCompile>
   </ItemGroup>
@@ -256,6 +265,12 @@
       <Filter>extra</Filter>
     </ClInclude>
     <ClInclude Include="..\extra\luabinding\cocos2dx_httprequest_luabinding.h">
+      <Filter>extra\luabinding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\apptools\HelperFunc.h">
+      <Filter>extra\apptools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\extra\luabinding\CZHelperFunc_luabinding.h">
       <Filter>extra\luabinding</Filter>
     </ClInclude>
   </ItemGroup>

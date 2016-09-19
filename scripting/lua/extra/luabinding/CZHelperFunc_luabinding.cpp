@@ -19,11 +19,11 @@ using namespace cocos2d;
 
 #endif
 
-
+unsigned int class_hash_code(const std::type_info& info);
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"CZHelperFunc"); toluafix_add_type_mapping(CLASS_HASH_CODE(typeid(CZHelperFunc)), "CZHelperFunc");
+	tolua_usertype(tolua_S, "CZHelperFunc"); toluafix_add_type_mapping(class_hash_code(typeid(CZHelperFunc)), "CZHelperFunc");
  
 }
 

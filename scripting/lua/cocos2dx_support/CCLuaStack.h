@@ -128,7 +128,7 @@ public:
     int luaLoadBuffer(lua_State* L, const char* chunk, int chunkSize, const char* chunkName);
 	static int lua_loadChunksFromZIP(lua_State *L);
 	int loadChunksFromZIP(const char *zipFilePath);
-protected:
+public:
     CCLuaStack(void)
     : m_state(NULL)
     , m_callFromLua(0)

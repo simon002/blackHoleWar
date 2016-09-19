@@ -1,8 +1,9 @@
 #include "cocos2d.h"
 extern "C" {
 #include "lua.h"
-#include "xxtea.h"
+//#include "xxtea.h"
 }
+#include "xxtea.h"
 #include "CCLuaEngine.h"
 #include "HelperFunc.h"
 
@@ -11,8 +12,6 @@ USING_NS_CC;
 
 unsigned char* CZHelperFunc::getFileData(const char* pszFileName, const char* pszMode, unsigned long * pSize)
 {
-    //add by luowei for quick-lua-2.2.6 surpport begin
-    //2015-12-04
 #if 0
     unsigned long size;
     unsigned char* buf = CCFileUtils::sharedFileUtils()->getFileData(pszFileName, pszMode, &size);
@@ -81,7 +80,6 @@ unsigned char* CZHelperFunc::getFileData(const char* pszFileName, const char* ps
     if (pSize) *pSize = size;
     return buffer;
 #endif
-    //add by luowei for quick-lua-2.2.6 surpport end
 }
 
 int CZHelperFunc::getFileData(const char *pPathFile)
@@ -93,13 +91,10 @@ int CZHelperFunc::getFileData(const char *pPathFile)
     CCLuaStack* stack = CCLuaEngine::defaultEngine()->getLuaStack();
 	stack->clean();
     stack->pushString((const char*)(buf), size);
-    //add by luowei for quick-lua-2.2.6 surpport begin
-    //2015-12-04
 #ifdef CC_QUICK_LUA_SURPPORT
     delete[] buf;
 #else
     delete buf;
 #endif
-    //add by luowei for quick-lua-2.2.6 surpport end
     return 1;
 }

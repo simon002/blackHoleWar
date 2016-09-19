@@ -39,6 +39,7 @@ extern "C" {
 #include "lua_cocos2dx_extensions_manual.h"
 #include "lua_cocos2dx_cocostudio_manual.h"
 #include "../extra/luabinding/cocos2dx_httprequest_luabinding.h"
+#include "../extra/luabinding/CZHelperFunc_luabinding.h"
 #include "xxtea.h"
 #include "platform/CCZipFile.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
@@ -125,7 +126,7 @@ bool CCLuaStack::init(void)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
     CCLuaObjcBridge::luaopen_luaoc(m_state);
 #endif
-
+	luaopen_CZHelperFunc_luabinding(m_state);
 	luaopen_cocos2dx_httprequest_luabinding(m_state);
     register_all_cocos2dx_manual(m_state);
     register_all_cocos2dx_extension_manual(m_state);

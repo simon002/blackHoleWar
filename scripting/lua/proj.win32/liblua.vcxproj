@@ -139,7 +139,9 @@ xcopy /Y /Q "$(ProjectDir)..\luajit\win32\*.*" "$(OutDir)"</Command>
     <ClCompile Include="..\cocos2dx_support\Lua_extensions_CCB.cpp" />
     <ClCompile Include="..\cocos2dx_support\Lua_web_socket.cpp" />
     <ClCompile Include="..\cocos2dx_support\tolua_fix.c" />
+    <ClCompile Include="..\extra\apptools\HelperFunc.cpp" />
     <ClCompile Include="..\extra\luabinding\cocos2dx_httprequest_luabinding.cpp" />
+    <ClCompile Include="..\extra\luabinding\CZHelperFunc_luabinding.cpp" />
     <ClCompile Include="..\extra\network\CCHTTPRequest.cpp" />
     <ClCompile Include="..\extra\network\CCNetwork.cpp" />
     <ClCompile Include="..\lua_extensions\cjson\fpconv.c" />
@@ -174,8 +176,10 @@ xcopy /Y /Q "$(ProjectDir)..\luajit\win32\*.*" "$(OutDir)"</Command>
     <ClInclude Include="..\cocos2dx_support\Lua_extensions_CCB.h" />
     <ClInclude Include="..\cocos2dx_support\Lua_web_socket.h" />
     <ClInclude Include="..\cocos2dx_support\tolua_fix.h" />
+    <ClInclude Include="..\extra\apptools\HelperFunc.h" />
     <ClInclude Include="..\extra\cocos2dx_extra.h" />
     <ClInclude Include="..\extra\luabinding\cocos2dx_httprequest_luabinding.h" />
+    <ClInclude Include="..\extra\luabinding\CZHelperFunc_luabinding.h" />
     <ClInclude Include="..\extra\network\CCHTTPRequest.h" />
     <ClInclude Include="..\extra\network\CCHTTPRequestDelegate.h" />
     <ClInclude Include="..\extra\network\CCNetwork.h" />
