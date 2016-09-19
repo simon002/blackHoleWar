@@ -41,7 +41,9 @@ function LauncherScene:_checkUpdate()
             return
         end
     else
-    	self._fileList = LauncherHelper.doFile("scripts/"..LauncherHelper.fListName)
+    	--self._fileList = LauncherHelper.doFile("scripts/"..LauncherHelper.fListName)
+		local flist = "scripts/" .. LauncherHelper.fListName
+		self._fileList = dofile(flist)
     end
     print(self._fileList)
     if self._fileList == nil then
